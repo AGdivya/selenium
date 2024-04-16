@@ -12,12 +12,11 @@ public class BaseClass {
 
     protected static WebDriver driver; //initialization of WebDriver
     static ConfigFileReader configFileReader = new ConfigFileReader(); // created ref variable for ConfigReader class
-    private static final Properties properties = null;
 
     public  static void launchApp()
     {
         WebDriverManager.chromedriver().setup();
-        String browserName = properties.getProperty("browser");
+        String browserName = configFileReader.getBrowser();
         switch (browserName)
         {
             case "Chrome":
@@ -31,8 +30,8 @@ public class BaseClass {
             default: throw new RuntimeException("browser not specified in the Configuration.properties file.");
         }
         configFileReader.getImplicitlyWait();
-        configFileReader.getApplicationUrl();
-
+        driver.manage().window().maximize();
+        driver.get( configFileReader.getApplicationUrl());
     }
 
 }

@@ -57,5 +57,14 @@ This method we need when we are not using mvn repository for driver extension
         else throw new RuntimeException("url not specified in the Configuration.properties file.");
     }
 
+    public String getBrowser() {
+        String browser = properties.getProperty("browser");
+        if (browser != null) {
+            return browser;
+        } else {
+            throw new RuntimeException("Browser not specified in the Configuration.properties file.");
+        }
+    }
+
 
 }
